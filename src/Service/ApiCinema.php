@@ -28,4 +28,18 @@ class ApiCinema
         return $reponseApi->toArray();
     }
 
+    public function getFilm($id) {
+
+        $reponseApi = $this->httpClient->request(
+            "GET",
+            "http://172.16.220.1:8000/api/films/$id");
+
+        return $reponseApi->toArray();
+    }
+
+
+
+
+
+
 }
