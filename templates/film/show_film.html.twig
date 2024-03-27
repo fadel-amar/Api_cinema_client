@@ -5,7 +5,7 @@
 {% block body %}
     <style>
         .example-wrapper {
-            margin: 1em auto;
+            margin: 1em 30px;
             max-width: 800px;
             width: 95%;
             font: 18px/1.5 sans-serif;
@@ -21,22 +21,27 @@
 
 
 
-        <h1 style="margin-bottom: 50px">Voici la liste des films à l'affiche</h1>
+        <h1 style="margin-bottom: 50px">Détail du Film </h1>
 
             <div>
                 <h2>Titre : {{ film.titre }}</h2>
                 <div>Id : {{ film.id }}</div>
-                <div>Durée : {{ film.duree }}</div>
+
+
+                <div>Durée : {{ film.duree | format_datetime(pattern='HH:mm')}}</div>
             </div>
             <br>
 
         <h2>Séances prévues</h2>
-        {% for seance in film.seances %}
+
+        {% for seance in film.seances|sort %}
             <div>
                 {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm') }}
             </div>
 
         {% endfor %}
+
+        <a class ="btn btn-secondary mt-5" href="./">Retour</a>
 
 
 

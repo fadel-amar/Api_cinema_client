@@ -28,9 +28,9 @@
             <div>
                 <h2>Titre : {{ film.titre }}</h2>
                 <div>Id : {{ film.id }}</div>
-                <div>Durée : {{ film.duree }}</div>
+                <div>Durée : {{ film.duree | format_datetime(pattern='HH:mm')}}</div>
 
-               <a class="btn btn-primary" href="http://127.0.0.1:8001/films/{{ film.id }}">Voir plus</a>
+               <a class="btn btn-primary mt-2" href="http://127.0.0.1:8001/films/{{ film.id }}">Voir plus</a>
             </div>
             <br>
 

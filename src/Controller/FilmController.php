@@ -10,8 +10,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class FilmController extends AbstractController
 {
     #[Route('/films', name: 'app_films_index')]
-    public function index(ApiCinema $apiCinema): Response
-    {
+    #[Route('/', name: 'index')]
+    public function index(ApiCinema $apiCinema): Response    {
         $films = $apiCinema->getFilmsAffiche();
 
         return $this->render('film/index.html.twig', ['films'=> $films]);
