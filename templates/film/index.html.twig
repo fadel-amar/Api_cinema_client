@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}Films!{% endblock %}
 
 {% block body %}
     <style>
@@ -18,25 +18,35 @@
 
     </style>
 
-    <div class="example-wrapper">
 
 
 
-        <h1 style="margin-bottom: 50px">Voici la liste des films à l'affiche</h1>
-        
-        {% for film in films %}
-            <div>
-                <h2>Titre : {{ film.titre }}</h2>
-                <div>Id : {{ film.id }}</div>
-                <div>Durée : {{ film.duree | format_datetime(pattern='HH:mm')}}</div>
 
-               <a class="btn btn-primary mt-2" href="http://127.0.0.1:8001/films/{{ film.id }}">Voir plus</a>
-            </div>
-            <br>
-
-        {% endfor %}
+        <h1 style="margin-bottom: 80px;margin-top:25px;">Liste des films à l'affiche</h1>
 
 
 
-    </div>
+            <div class="row  row-cols-lg-3 g-5">
+                {% for film in films %}
+                <div class="card" style="">
+                    <img class="card-img-top img-thumbnail" src="{{ asset('/images/cinema.jpg') }}" alt="Card image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ film.titre }}</h5>
+                        <p>Id : {{ film.id }}</p>
+                        <p>Durée : {{ film.duree | format_datetime(pattern='HH:mm:ss')}}</p>
+                        <a class="btn btn-primary mt-2" href="http://127.0.0.1:8001/films/{{ film.id }}">Voir plus</a>
+                    </div>
+                </div>
+
+
+
+            {% endfor %}
+
+        </div>
+
+
+
+
+
+
 {% endblock %}

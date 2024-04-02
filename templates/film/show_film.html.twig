@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}FILMS!{% endblock %}
 
 {% block body %}
     <style>
@@ -27,7 +27,7 @@
                 <h2>Titre : {{ film.titre }}</h2>
                 <div>Id : {{ film.id }}</div>
 
-                <div>Durée : {{ film.duree | format_datetime(pattern='HH:mm')}}</div>
+                <div>Durée : {{ film.duree | format_datetime(pattern='HH:mm:ss')}}</div>
             </div>
             <br>
 
@@ -35,7 +35,7 @@
 
         {% for seance in film.seances|sort %}
             <div>
-                {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm') }}
+                {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm:ss') }}
             </div>
 
         {% endfor %}
