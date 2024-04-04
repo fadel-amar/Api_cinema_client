@@ -37,6 +37,20 @@ class ApiCinema
         return $reponseApi->toArray();
     }
 
+//    public function registerUser (UserModel $userModel) {
+//        $reponseApi = $this->httpClient->request(
+//            "POST",
+//            "http://172.16.220.1:8000/api/register",
+//            ["json"=>[
+//                "email" => "$userModel->email",
+//                "password" => "$userModel->password"
+//            ]]);
+//
+//
+//        return (($reponseApi->toArray())['token']);
+//    }
+
+
 
 
 
