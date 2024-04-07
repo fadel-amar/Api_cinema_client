@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Créer un compte</h1>
+        {{ form_start(form) }}
+        {{ form_row(form.email) }}
+        {{ form_errors(form.email) }}
+
+
+        {{ form_row(form.password.first) }}
+        {{ form_errors(form.password.first) }} {# Affiche les erreurs du champ password #}
+
+        {{ form_row(form.password.second) }}
+        {{ form_errors(form.password.second) }}
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
