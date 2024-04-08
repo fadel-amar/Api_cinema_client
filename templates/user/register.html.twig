@@ -6,18 +6,14 @@
     <div class="container">
         <h1>Créer un compte</h1>
 
-        {{ form_errors(form) }}
+{#        {{ dump(form) }}#}
 
         {{ form_start(form) }}
-
         {{ form_row(form.email) }}
-
+        {{ form_errors(form.email) }}
         {{ form_row(form.password) }}
-
         {{ form_row(form.confirmPassword) }}
-
         <button type="submit" class="btn btn-primary">Créer un compte</button>
-
         {{ form_end(form) }}
     </div>
 {% endblock %}

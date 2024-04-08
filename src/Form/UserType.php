@@ -20,11 +20,11 @@ class UserType extends AbstractType
                 'label' => 'Adresse email',
                 'required' => true,
             ])
-            -> add('password', PasswordType::class, [
+            ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
 
             ])
-            -> add('confirmPassword', PasswordType::class, [
+            ->add('confirmPassword', PasswordType::class, [
                 'label' => 'Confirmer le mot de passe',
             ]);
 
