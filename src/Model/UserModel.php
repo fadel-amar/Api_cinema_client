@@ -19,6 +19,10 @@ class UserModel
     )]
     public ?string $password = null;
 
+    #[Assert\NotBlank(
+        message: "Confirmez le mot de passe"
+    )]
+    public ?string $confirmPassword = null;
 
 
 
