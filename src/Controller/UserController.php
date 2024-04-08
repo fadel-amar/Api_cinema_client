@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class UserController extends AbstractController
 {
     #[\Symfony\Component\Routing\Attribute\Route('/register', name: 'app_register')]
@@ -23,25 +24,26 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $userData = $form->getData();
-
             $response = $apiCinema->registerUser($userData);
 
             $statut = $response->getStatusCode();
             $content = json_decode($response->getContent(false), true);
 
             if ($statut == 201) {
-
                 return $this->redirectToRoute('home');
-
             } else {
-                $errors = $content[0];
-                foreach ($errors as $error) {
-                    $form = $form->addError(new FormError($error));
+                $errors = $content['errors'];
+
+                if (isset($errors['email'])) {
+                    $erreursMail = $errors["email"];
+                    $form['email']->addError(new FormError($erreursMail));
                 }
 
+                if (isset($errors['password'])) {
+                    $erreurPassword = $errors["password"];
+                    $form['password']->addError(new FormError($erreurPassword));
+                }
             }
-
-
 
         }
 
