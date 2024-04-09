@@ -24,7 +24,7 @@ class ApiCinema
 
         $reponseApi = $this->httpClient->request(
             "GET",
-            "http://localhost:8000/api/films");
+            "http://172.16.220.1:8000/api/films");
 
         return $reponseApi->toArray();
     }
@@ -33,7 +33,7 @@ class ApiCinema
 
         $reponseApi = $this->httpClient->request(
             "GET",
-            "http://localhost:8000/api/films/$id");
+            "http://172.16.220.1:8000/api/films/$id");
 
         return $reponseApi->toArray();
     }
@@ -45,7 +45,7 @@ class ApiCinema
 
         $reponseApi = $this->httpClient->request(
             "POST",
-            "http://localhost:8000/api/register",
+            "http://172.16.220.1:8000/api/register",
             ["json"=>[
                 "email" => "$email",
                 "password" => "$passsword",

@@ -30,9 +30,8 @@ class UserController extends AbstractController
             $content = json_decode($response->getContent(false),true);
 
             if ($statut == 201) {
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('app_films_index');
             } else {
-
                 $errors = $content['errors'];
 
                 if (isset($errors['email'])) {
@@ -44,22 +43,11 @@ class UserController extends AbstractController
                     $erreurPassword = $errors["password"];
                     $form['password']->addError(new FormError($erreurPassword));
                 }
-
-
-//                dd($form->getErrors(true)); // Vérifiez les erreurs globales du formulaire
-//                foreach ($form->getErrors(true) as $error) {
-//                    dd($error->getMessage()); // Vérifiez les messages d'erreur globaux du formulaire
-//                }
-//                foreach ($form->getErrors(true, true) as $childError) {
-//                    dd($childError->getMessage()); // Vérifiez les messages d'erreur des champs du formulaire
-//                }
             }
-
         }
 
         return $this->render('user/register.html.twig', [
-            'form' => $form->createView(),
-            'controller_name' => 'User'
+            'form' => $form,
         ]);
     }
 }

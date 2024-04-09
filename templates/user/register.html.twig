@@ -3,17 +3,74 @@
 {% block title %}Créer un compte{% endblock %}
 
 {% block body %}
-    <div class="container">
+
+    <div class="container mt-5">
+
+
+        <link rel="stylesheet" href="{{ asset('/css/inscription.css') }}">
+
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+
         <h1>Créer un compte</h1>
 
-{#        {{ dump(form) }}#}
-
-        {{ form_start(form) }}
         {{ form_row(form.email) }}
-        {{ form_errors(form.email) }}
         {{ form_row(form.password) }}
         {{ form_row(form.confirmPassword) }}
-        <button type="submit" class="btn btn-primary">Créer un compte</button>
+
+
+        <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Créer un compte</button>
+
         {{ form_end(form) }}
     </div>
+
+
+
+
+
+
+
+
+    {#        <div class="register-form"> #}
+
+    {#            {{ form_errors(form) }} #}
+    {#            {{ form_start(form, { 'method': 'post' }) }} #}
+
+    {#            <div class="form-group"> #}
+    {#                <label for="username" class="text-info">{{ form_label(form.email) }}</label> #}
+    {#                <br> #}
+    {#                {{ form_widget(form.email) }} #}
+    {#                {% if form_errors(form.email) %} #}
+    {#                    <div class="text-danger">{{ form_errors(form.email) }}</div> #}
+    {#                {% endif %} #}
+    {#            </div> #}
+
+    {#            <div class="form-group"> #}
+    {#                <label for="password" class="text-info">{{ form_label(form.password) }}</label> #}
+    {#                <br> #}
+    {#                {{ form_widget(form.password) }} #}
+    {#                {% if form_errors(form.password) %} #}
+    {#                    <div class="text-danger">{{ form_errors(form.password) }}</div> #}
+    {#                {% endif %} #}
+    {#            </div> #}
+
+    {#            <div class="form-group"> #}
+    {#                <label for="password" class="text-info">{{ form_label(form.confirmPassword) }}</label> #}
+    {#                <br> #}
+    {#                {{ form_widget(form.confirmPassword) }} #}
+    {#                {% if form_errors(form.confirmPassword) %} #}
+    {#                    <div class="text-danger">{{ form_errors(form.confirmPassword) }}</div> #}
+    {#                {% endif %} #}
+    {#            </div> #}
+
+    {#            <div class="form-group mt-2"> #}
+    {#                <input type="submit" name="submit" class="btn btn-info btn-md" value="Créer un compte"> #}
+    {#            </div> #}
+
+    {#            {{ form_end(form) }} #}
+    {#        </div> #}
+
+
+
+
 {% endblock %}
