@@ -30,7 +30,7 @@ class UserController extends AbstractController
             $content = json_decode($response->getContent(false),true);
 
             if ($statut == 201) {
-                return $this->redirectToRoute('home');
+                return $this->redirectToRoute('index');
             } else {
 
                 $errors = $content['errors'];
