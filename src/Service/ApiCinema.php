@@ -54,6 +54,17 @@ class ApiCinema
 
         return $reponseApi;
     }
+    public function login_check (UserModel $userModel) {
+        $reponseApi = $this->httpClient->request(
+            "POST",
+            "http://localhost:8000/api/login_check",
+            ["json"=>[
+                "username" => "$userModel->email",
+                "password" => "$userModel->password"
+            ]]);
+
+        return $reponseApi;
+    }
 
 
 

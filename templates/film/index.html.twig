@@ -1,52 +1,89 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Films!{% endblock %}
+{% block title %}Films{% endblock %}
 
 {% block body %}
     <style>
-        .example-wrapper {
-            margin: 1em 30px;
-            max-width: 800px;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
+        /* Styles pour la classe container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .example-wrapper code {
-            background: #F5F5F5;
-            padding: 2px 6px;
+        /* Styles pour la classe p-10 */
+        .p-10 {
+            padding: 50px;
         }
 
+        /* Styles pour la classe card */
+        .card {
+            background: rgba(175, 217, 177, 0.29);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Styles pour l'image dans la carte */
+        .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Styles pour le corps de la carte */
+        .card-body {
+            padding: 20px;
+        }
+
+        /* Styles pour le titre de la carte */
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        /* Styles pour le texte de la carte */
+        .card-text {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Styles pour le bouton de la carte */
+        .card-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 
-
-
-
-
-        <h1 style="margin-bottom: 80px;margin-top:25px;">Liste des films à l'affiche</h1>
-
-
-
-            <div class="row  row-cols-lg-3 g-5">
+    <div class="container">
+        <h1 style="margin-bottom: 80px; margin-top: 25px;">Liste des films à l'affiche</h1>
+        <div class="p-10">
+            <div class="row">
                 {% for film in films %}
-                <div class="card" style="">
-                    <img class="card-img-top img-thumbnail" src="{{ asset('/images/cinema.jpg') }}" alt="Card image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ film.titre }}</h5>
-                        <p>Id : {{ film.id }}</p>
-                        <p>Durée : {{ film.duree | format_datetime(pattern='HH:mm:ss')}}</p>
-                        <a class="btn btn-primary mt-2" href="http://127.0.0.1:8001/films/{{ film.id }}">Voir plus</a>
+                    <div class="col-lg-4 mb-4">
+                        <div class="card">
+                            <img class="card-img-top" src="{{ asset('/images/cinema.jpg') }}" alt="Card image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ film.titre }}</h5>
+                                <p class="card-text">Durée : {{ film.duree | format_datetime(pattern='HH:mm:ss') }}</p>
+                                <a href="http://127.0.0.1:8001/films/{{ film.id }}" class="card-btn">Voir plus</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-
-
-            {% endfor %}
-
+                {% endfor %}
+            </div>
         </div>
-
-
-
-
-
-
+    </div>
 {% endblock %}

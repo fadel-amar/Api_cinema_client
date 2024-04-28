@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter {% endblock %}
+
+{% block body %}
+    {{ dump(session) }}
+    {{ dump(content) }}
+
+
+    <div class="container mt-5">
+        <link rel="stylesheet" href="{{ asset('/css/inscription.css') }}">
+
+        {{ form_errors(form) }}
+        {{ form_start(form) }}
+
+        <h1>Se connecter</h1>
+
+        {{ form_start(form) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+        <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Se connecter</button>
+        {{ form_end(form) }}
+
+    </div>
+
+
+
+{% endblock %}
+
+
+
