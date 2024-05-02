@@ -20,6 +20,7 @@
                 width:100% ;
             }
             .card {
+                background: #889bb7;
                 display: grid;
                 grid-template-columns: 50% 50%;
                 border: none;
@@ -82,9 +83,10 @@
         <ul class="list-group mt-4">
             {% for seance in film.seances|sort %}
                 <li class="list-group-item">
-                    {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm:ss') }} {% if app.session.has('jwt_token') %}
+                  {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm:ss') }}
+{#                    {{ if( seance.dateProjection >=   ) }}#}
                         <a class="btn btn-primary" href="#">Réserver</a>
-                    {% endif %}
+{#                    {% endif %}#}
                 </li>
             {% endfor %}
         </ul>

@@ -104,8 +104,6 @@ class UserController extends AbstractController
 
         return $this->render('user/login.html.twig', [
             'form' => $form,
-            'session' => $sessionData,
-            'content' => $content
         ]);
     }
 }

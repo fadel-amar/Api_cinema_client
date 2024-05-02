@@ -3,11 +3,7 @@
 {% block title %}Se connecter {% endblock %}
 
 {% block body %}
-    {{ dump(session) }}
-    {{ dump(content) }}
-
-
-    <div class="container mt-5">
+     <div class="container mt-5">
         <link rel="stylesheet" href="{{ asset('/css/inscription.css') }}">
 
         {{ form_errors(form) }}
