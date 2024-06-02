@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation {% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        {#        <link rel="stylesheet" href="{{ asset('/css/inscription.css') }}"> #}
+
+
+        <h1>Réserver la séance</h1>
+        <h2>Titre : {{ seance.film.titre }} </h2>
+        <div class="photo">
+            <img style=" width: 30%;" src="{{ asset('/images/Popcorn.png') }}" alt=''>
+        </div>
+
+        <p>Durée : {{ seance.film.duree | format_datetime(pattern='HH:mm:ss') }}</p>
+        <p>Date : {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm:ss') }}</p>
+        <p>Salle : {{ seance.salle.nom }}</p>
+        <p id="prixUT">Prix Unitaire : {{ seance.tarifNormal }} €</p>
+
+        {{ form_start(form) }}
+
+        {{ form_row(form.qte) }}
+        <div style="color:red;">
+            {{ form_errors(form) }}
+        </div>
+
+        <br>
+        <strong>Prix Total : </strong><strong id="prixTotal"></strong> €
+        <br>
+
+        <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Réserver</button>
+        {{ form_end(form) }}
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            function initializeScript() {
+                // Récupérer les éléments du DOM
+                const prixUnitaireElement = document.getElementById('prixUT');
+                const quantiteElement = document.getElementById('reservation_qte');
+                const prixTotalElement = document.getElementById('prixTotal');
+
+                // Vérification si les éléments existent dans le DOM
+                if (!prixUnitaireElement || !quantiteElement || !prixTotalElement) {
+                    console.error("Un ou plusieurs éléments du DOM sont manquants");
+                    return;
+                }
+
+                const prixUnitaireText = prixUnitaireElement.textContent.replace('Prix Unitaire :', '').replace('€', '').trim();
+                const prixUnitaire = parseFloat(prixUnitaireText);
+
+                // Vérification si le prix unitaire est un nombre valide
+                if (isNaN(prixUnitaire)) {
+                    console.error("Le prix unitaire n'est pas un nombre valide");
+                    return;
+                }
+
+                // Fonction pour mettre à jour le prix total
+                function updatePrixTotal() {
+                    const quantite = parseInt(quantiteElement.value);
+                    if (!isNaN(quantite) && quantite > 0) {
+                        const prixTotal = quantite * prixUnitaire;
+                        prixTotalElement.textContent = prixTotal.toFixed(2); // Met à jour le prix total avec deux décimales
+                    } else {
+                        prixTotalElement.textContent = '0.00';
+                    }
+                }
+
+                // Ajouter un écouteur d'événement pour détecter les changements de quantité
+                quantiteElement.addEventListener('input', updatePrixTotal);
+
+                // Initialiser le prix total lors du chargement de la page
+                updatePrixTotal();
+            }
+
+            // Initialiser le script
+            initializeScript();
+
+            // Réinitialiser le script lorsque le DOM change
+            document.addEventListener('DOMNodeInserted', (event) => {
+                initializeScript();
+            });
+        });
+    </script>
+
+
+
+{% endblock %}
+
+
+

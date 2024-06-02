@@ -8,8 +8,9 @@
 
         <style>
             .btn {
-                margin-left:10px;
+                margin-left: 10px;
             }
+
             .container {
                 max-width: 800px;
                 margin: 0 auto;
@@ -17,8 +18,9 @@
             }
 
             img {
-                width:100% ;
+                width: 100%;
             }
+
             .card {
                 background: #889bb7;
                 display: grid;
@@ -74,19 +76,23 @@
                 <p class="card-text">Durée : {{ film.duree | format_datetime(pattern='HH:mm:ss') }}</p>
             </div>
             <div class="photo">
-                <img src="{{ asset('/images/Popcorn.png') }}" alt='' >
+                <img src="{{ asset('/images/Popcorn.png') }}" alt=''>
             </div>
         </div>
 
         <h2 class="mt-5">Séances prévues</h2>
 
         <ul class="list-group mt-4">
-            {% for seance in film.seances|sort %}
+            {% for seance in film.seances | sort %}
+
+                {% set seanceDate = seance.dateProjection | date('Y-m-d H:i:s') %}
+                {% set currentDate = "now" | date('Y-m-d H:i:s') %}
+
                 <li class="list-group-item">
-                  {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm:ss') }}
-{#                    {{ if( seance.dateProjection >=   ) }}#}
-                        <a class="btn btn-primary" href="#">Réserver</a>
-{#                    {% endif %}#}
+                    {{ seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm:ss') }}
+                        {% if seanceDate >= currentDate %}
+                        <a class="btn btn-primary" href="/reservations/{{ seance.id }}">Réserver</a>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

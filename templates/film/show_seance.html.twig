@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FILMS{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5">Réservation de la séance</h1>
+
+        <style>
+            .btn {
+                margin-left: 10px;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 0 16px;
+            }
+
+            img {
+                width: 50%;
+            }
+            .photo {
+                margin-bottom: 2px;
+            }
+
+            .card {
+                background: #889bb7;
+                display: grid;
+                grid-template-columns: 50% 50%;
+                border: none;
+                box-shadow: 0 4px 6px rgba(32, 148, 190, 0.1);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+
+            .card-title {
+                font-size: 2rem;
+                color: #5c22ff;
+            }
+
+            .card-text {
+                font-size: 1.2rem;
+                color: #666;
+            }
+
+            h2 {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #2db7d0;
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+        </style>
+
+
+        {#        <p> Titre : {{ seance.film.titre }}</p> #}
+        {#        <p> Duree : {{ seance.film.duree }}</p> #}
+        {#        <p> Date Projection : {{  seance.dateProjection |format_datetime(pattern='dd/MM/y HH:mm:ss')}}</p> #}
+        {#        <p> Salle : {{ seance.salle.nom }}</p> #}
+        {#        <p> Prix : {{ seance.tarifNormal }} €</p> #}
+
+
+        <h2>Titre : Room</h2>
+        <div class="photo">
+            <img src="{{ asset('/images/Popcorn.png') }}" alt=''>
+        </div>
+        <p>Durée : 01:02:30 </p>
+        <p>Date : 27/05/2024 à 07:46:45</p>
+
+
+        <form action="">
+            <label for="nbPlaces">Nombre de places</label>
+            <input id="nbPlaces" type="number"  min="1" max="5" value="1"/>
+            <button class="btn btn-primary">Réserver</button>
+        </form>
+
+
+
+    </div>
+{% endblock %}

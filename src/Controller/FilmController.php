@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\ReservationType;
 use App\Service\ApiCinema;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -26,5 +28,7 @@ class FilmController extends AbstractController
         return $this->render('film/show_film.html.twig', ['film'=> $film]);
 
     }
+
+
 
 }
