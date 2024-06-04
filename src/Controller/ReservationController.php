@@ -16,6 +16,16 @@ class ReservationController extends AbstractController
     #[Route('/reservations/{id}', name: 'api_film_reservation', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function showSeance(ApiCinema $apiCinema, RequestStack $request, $id): Response
     {
+
+        $responseGET = $apiCinema->reserver('GET', $id);
+        if ($responseGET->getStatusCode() == 401) {
+            $this->addFlash("danger", "Connectez-vous pour réaliser cette action");
+            return $this->redirectToRoute('app_films_index');
+        }
+
+        $getSeance = $responseGET->toArray();
+
+
         $reservation = new ReservationModel();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request->getCurrentRequest());
@@ -28,7 +38,13 @@ class ReservationController extends AbstractController
             $content = json_decode($response->getContent(false), true);
 
             if ($statut == 201) {
-                $this->addFlash("success", "Votre réservation a bien été transmise");
+                $filmTitre = $getSeance['film']['titre'];
+                $dateSeance = $getSeance['dateProjection'];
+                $dateTime = new \DateTime($dateSeance);
+                $dateFormatted = $dateTime->format('d/m/Y  H:i');
+
+                $qte = $reservation->qte;
+                $this->addFlash("success", "Votre réservation de $qte place(s) a bien été transmise pour le film  $filmTitre  le $dateFormatted  ");
                 return $this->redirectToRoute('app_films_index');
             } else {
                 $form->addError(new FormError($content['errors']));
@@ -36,18 +52,9 @@ class ReservationController extends AbstractController
         }
 
 
-        $responseGET = $apiCinema->reserver('GET', $id);
-        if ($responseGET->getStatusCode() == 401) {
-            $this->addFlash("danger", "Connectez-vous pour réaliser cette action");
-            return $this->redirectToRoute('app_films_index');
-        }
-
-        $getSeance = $responseGET->toArray();
-
-
         return $this->render('reservation/index.html.twig', [
             'form' => $form,
-            'seance' => $getSeance ?? null,  // Utilisez le contenu de GET seulement si disponible
+            'seance' => $getSeance ?? null,
         ]);
     }
 }

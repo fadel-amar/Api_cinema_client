@@ -83,7 +83,10 @@
         <h2 class="mt-5">Séances prévues</h2>
 
         <ul class="list-group mt-4">
-            {% for seance in film.seances | sort %}
+
+            {% set sortedSeances = film.seances|sort((a, b) => a.dateProjection > b.dateProjection) %}
+
+            {% for seance in sortedSeances  %}
 
                 {% set seanceDate = seance.dateProjection | date('Y-m-d H:i:s') %}
                 {% set currentDate = "now" | date('Y-m-d H:i:s') %}
